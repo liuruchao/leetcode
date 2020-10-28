@@ -36,3 +36,23 @@ var preorderTraversal = function (root) {
         preorderTraversal(root.right)
       )
 }
+
+/* 3. 迭代方法
+
+ */
+
+var preorderTraversal = function (root) {
+  const result = []
+  const stack = []
+  if (root) {
+    stack.push(root)
+  }
+  while (stack.length > 0) {
+    const node = stack.pop()
+    result.push(node.val)
+    node.right && stack.push(node.right)
+
+    node.left && stack.push(node.left)
+  }
+  return result
+}
