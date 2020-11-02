@@ -22,3 +22,21 @@ function checkNode(node1, node2) {
     checkNode(node1.right, node2.left)
   )
 }
+
+/* 2.迭代
+  截止该题，二叉树的迭代方法，都会借助到队列或者栈的数据结构，用来存放要操作的节点
+  声明一个队列，然后每次取两个节点，来比较这两个节点是否相同，入队的时候，顺序按照左子树的左子树，对右子树的右子树
+
+*/
+
+var isSymmetric = function (root) {
+  let queue = [root, root]
+  while (queue.length) {
+    let n = queue.shift()
+    let m = queue.shift()
+    if (!m && !n) continue
+    if (!m || !n || m.val !== n.val) return false
+    queue.push(n.left, m.right, n.right, m.left)
+  }
+  return true
+}
