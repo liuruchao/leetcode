@@ -28,3 +28,30 @@ var invertTree = function (root) {
 
   return root
 }
+
+/* 3. 迭代 ，广度优先搜索
+
+*/
+
+var invertTree = function(root) {
+    if(!root) return null
+ 
+    // 申请一个队列
+    let queue = []
+    queue.push(root)
+ 
+    // 迭代遍历
+    while(queue.length){
+        // 出队
+        let node = queue.shift()
+        // 该节点左右子树反转
+        let saveNode = node.left
+        node.left = node.right
+        node.right = saveNode
+        
+        // 入队
+        node.left && queue.push(node.left)
+        node.right && queue.push(node.right)
+    }
+   return root
+ };
