@@ -18,3 +18,28 @@ var reverseList = function (head) {
   let prevNode = null
   return reverseNode(head, prevNode)
 }
+
+/*
+2. 迭代，写出递归方法后，迭代的方法其实和递归类似
+*/
+var reverseList = function (head) {
+  if (!head) return null
+
+  let prevNode = null
+  let currentNode = head
+
+  while (currentNode) {
+    // 保存下一个节点
+    let nextNode = currentNode.next
+
+    // 将该节点后继指针指向上一个节点，实现反转
+    currentNode.next = prevNode
+
+    // 重新将当前节点赋值到上一个节点，下一个节点赋值到当前节点，再开始反转
+    prevNode = currentNode
+
+    currentNode = nextNode
+  }
+
+  return prevNode
+}
