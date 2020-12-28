@@ -17,3 +17,22 @@ var twoSum = function (nums, target) {
 
   return []
 }
+
+/* 
+2. 时间复杂度O(n) 空间复杂度O(n)
+空间换时间，借用了一个map结构来存储已遍历的数值，后续遍历的值会从这个map里找target-i
+*/
+var twoSum = function (nums, target) {
+  let numsLen = nums.length
+  let restMap = new Map()
+  for (let i = 0; i < numsLen; i++) {
+    const restNum = target - nums[i]
+    if (restMap.has(restNum)) {
+      return [restMap.get(restNum), i]
+    } else {
+      restMap.set(nums[i], i)
+    }
+  }
+
+  return []
+}
